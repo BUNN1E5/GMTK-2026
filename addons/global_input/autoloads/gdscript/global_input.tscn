@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b28ulabsfoug3"]
+
+[ext_resource type="Script" uid="uid://cim3jqmffvjl1" path="res://addons/global_input/autoloads/gdscript/global_input.gd" id="1_qdvqm"]
+
+[node name="GlobalInput" type="Node2D" unique_id=1591134852]
+script = ExtResource("1_qdvqm")

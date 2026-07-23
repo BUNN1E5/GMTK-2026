@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://c1gmqv74sq2lu"]
+
+[ext_resource type="Script" uid="uid://jgeoupl60086" path="res://networking/eos_login.gd" id="1_ne8va"]
+
+[node name="EosLogin" type="Control" unique_id=1826531175]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ne8va")

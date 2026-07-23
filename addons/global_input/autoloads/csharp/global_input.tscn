@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d5o7hxry8ksq"]
+
+[ext_resource type="Script" uid="uid://ckr0xgxq6k3nd" path="res://addons/global_input/autoloads/csharp/GlobalInput.cs" id="1_ct7bv"]
+
+[node name="GlobalInput" type="Node" unique_id=1162654885]
+script = ExtResource("1_ct7bv")
