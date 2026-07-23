@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://k2pvdyaif5g2" path="res://ui/pause_menu/pause_menu.gd" id="1_mnjdh"]
 
-[node name="Control" type="Control" unique_id=1909325359]
+[node name="PauseMenu" type="Control" unique_id=1909325359]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,6 +22,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="VSplitContainer" type="VSplitContainer" parent="MarginContainer" unique_id=1376921185]
 layout_mode = 2
+dragging_enabled = false
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VSplitContainer" unique_id=2076722170]
 layout_mode = 2
