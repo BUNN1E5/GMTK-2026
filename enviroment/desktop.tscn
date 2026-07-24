@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://kqt61txaw7bv"]
+
+[ext_resource type="Script" uid="uid://dt7m352pye476" path="res://enviroment/desktop.gd" id="1_3kuve"]
+
+[node name="Desktop" type="Node2D" unique_id=177165024]
+script = ExtResource("1_3kuve")

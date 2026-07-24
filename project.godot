@@ -12,8 +12,7 @@ config_version=5
 
 config/name="Desktop Dungeon"
 config/features=PackedStringArray("4.7", "C#", "Forward Plus")
-boot_splash/show_image=false
-config/icon="res://icon.svg"
+config/icon="uid://d2fq7ealjwbwf"
 
 [autoload]
 
@@ -35,6 +34,7 @@ GlobalInput="*uid://cim3jqmffvjl1"
 window/size/resizable=false
 window/size/always_on_top=true
 window/size/transparent=true
+window/size/no_focus=true
 window/subwindows/embed_subwindows=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
@@ -55,3 +55,4 @@ enabled=PackedStringArray("res://addons/epic-online-services-godot/plugin.cfg", 
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+viewport/transparent_background=true
