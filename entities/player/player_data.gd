@@ -3,6 +3,7 @@ class_name PlayerData
 
 #Basic Player Stats
 @export var name : String
+@export var uuid : String
 @export var total_clicks : int #64 bit int
 @export var exp : int
 @export var exp_req : int
@@ -18,6 +19,7 @@ class_name PlayerData
 @export var costume_data : CostumeData
 
 func _init():
+	uuid = UUID.v4()
 	if not class_data:
 		class_data = ClassData.new()
 	if not costume_data:

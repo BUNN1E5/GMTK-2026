@@ -12,7 +12,7 @@ var peer_user_ids : Array[int]
 func _ready() -> void:
 	pass
 
-func create_lobby():
+func create_lobby(lobby_id):
 	var create_opts := EOS.Lobby.CreateLobbyOptions.new()
 	create_opts.bucket_id = local_user_id
 	create_opts.max_lobby_members = 64
@@ -20,7 +20,7 @@ func create_lobby():
 	if(not lobby):
 		print("Lobby Creation Failed: " + EOS.result_str(lobby))
 		return
-	var result := peer.create_server(local_user_id)
+	var result := peer.create_server(lobby_id)
 	if result != OK:
 		printerr("Failed to create client: " + EOS.result_str(result))
 		return

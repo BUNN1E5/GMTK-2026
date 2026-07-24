@@ -15,7 +15,8 @@ func _on_connect_button_pressed() -> void:
 	pass
 
 func _on_create_lobby_button_pressed() -> void:
-	await PeerConnect.create_lobby()
+	var uuid = UUID.v4()
+	await PeerConnect.create_lobby(uuid)
 	await get_tree().create_timer(1.0).timeout
-	local_user_id_display.text = PeerConnect.local_user_id
+	local_user_id_display.text = uuid
 	pass

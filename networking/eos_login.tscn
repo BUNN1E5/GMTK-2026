@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://hyisggpwv4qh" path="res://networking/test_connect.gd" id="2_vlqf8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_46qsk"]
-bg_color = Color(0.5628355, 0.6044661, 0.66196984, 1)
 
 [node name="EosLogin" type="Control" unique_id=1826531175]
 layout_mode = 3
