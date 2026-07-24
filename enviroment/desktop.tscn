@@ -2,9 +2,12 @@
 
 [ext_resource type="Script" uid="uid://dt7m352pye476" path="res://enviroment/desktop.gd" id="1_3kuve"]
 [ext_resource type="PackedScene" uid="uid://i2uvjck1bcn4" path="res://entities/player/player.tscn" id="2_g8o65"]
+[ext_resource type="PackedScene" uid="uid://cagwhlcgg4rpp" path="res://entities/Enemies/enemy.tscn" id="3_vou16"]
 
 [node name="Desktop" type="Node2D" unique_id=177165024]
 script = ExtResource("1_3kuve")
 
 [node name="Player" parent="." unique_id=949443592 instance=ExtResource("2_g8o65")]
-position = Vector2(144, 169)
+position = Vector2(44, 52)
+
+[node name="Enemy" parent="." unique_id=226358763 instance=ExtResource("3_vou16")]

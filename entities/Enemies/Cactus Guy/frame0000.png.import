@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpk6o8u8po27w"
-path="res://.godot/imported/frame0000.png-ef386cb15db2a1eb0e612b221be16405.ctex"
+uid="uid://bv4xdo8xs74v7"
+path="res://.godot/imported/frame0000.png-69d1213b4a7246c370c66758f22e17b5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/player/classes/elf/frame0000.png"
-dest_files=["res://.godot/imported/frame0000.png-ef386cb15db2a1eb0e612b221be16405.ctex"]
+source_file="res://entities/Enemies/Cactus Guy/frame0000.png"
+dest_files=["res://.godot/imported/frame0000.png-69d1213b4a7246c370c66758f22e17b5.ctex"]
 
 [params]
 
