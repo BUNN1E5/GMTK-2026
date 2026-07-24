@@ -1,5 +1,5 @@
 extends Resource
-class_name Costume
+class_name CostumeData
 
 #I dunno we will deal with this later
 var hat_type

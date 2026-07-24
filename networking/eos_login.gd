@@ -1,6 +1,7 @@
 extends Node
+class_name EOSLogin
 
-var local_user_id : String = ""
+static var local_user_id : String = ""
 
 func _init() -> void:
 	var init_opts = EOS.Platform.InitializeOptions.new()
@@ -39,29 +40,37 @@ func _init() -> void:
 		return
 	print("Setup EOS Logging success")
 	
-	IEOS.connect_interface_login_callback.connect(_on_connect_login)
+	IEOS.connect_interface_login_callback.connect(_on_login)
+	IEOS.connect_interface_logout_callback.connect(_on_logout)
+	anonomous_login("Random Name")
 
 func _on_logging_interface(msg):
 	msg = EOS.Logging.LogMessage.from(msg)
 	print("[EOS] %s | %s" % [msg.category, msg.message])
 	
-func _on_connect_login(data: Dictionary) -> void:
+func _on_login(data: Dictionary) -> void:
 	if not data.success:
 		print("Login failed")
 		EOS.print_result(data)
 		return
 	print_rich("[b]Login successfull[/b]: local_user_id=", data.local_user_id)
 	local_user_id = data.local_user_id
-	HAuth.product_user_id = local_user_id
+	
+func _on_logout(data: Dictionary) -> void:
+	if not data.success:
+		print("Logout failed?")
+		EOS.print_result(data)
+		return
+	print_rich("[b]Logout successfull[/b]: local_user_id=", data.local_user_id)
+	local_user_id = data.local_user_id
 
-func device_id_login():
-	var credentials := EOS.Auth.Credentials.new()
-	credentials.type = EOS.Auth.LoginCredentialType.DeviceCode
-	credentials.id = "0" # Use device id??
-	credentials.token = "0" #Figure this out later
+static func anonomous_login(username : String):
+	await HAuth.login_anonymous_async(username)
 	
-	var login_opts := EOS.Auth.LoginOptions.new()
-	login_opts.credentials = credentials
-	
+static func logout():
+	await HAuth.logout_async()
 	pass
+	
+	
+	
 	

@@ -1,6 +1,7 @@
 extends Node
 
 var is_local : bool = true
+var player_data : PlayerData
 
 func _ready() -> void:
 	GlobalInput.global_input_event.connect(global_input)
