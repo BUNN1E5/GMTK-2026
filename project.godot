@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Desktop Dungeon"
-config/features=PackedStringArray("4.8", "C#", "Forward Plus")
+config/features=PackedStringArray("4.7", "C#", "Forward Plus")
 config/icon="uid://d2fq7ealjwbwf"
 
 [autoload]
@@ -28,6 +28,7 @@ HLobbies="*uid://6iqvm33q0tb1"
 HP2P="*uid://u6ae5fpm6l8q"
 HSessions="*uid://bieh2rxxahuu2"
 GlobalInput="*uid://cim3jqmffvjl1"
+PeerConnect="*uid://87qe7ha7u2wu"
 
 [display]
 

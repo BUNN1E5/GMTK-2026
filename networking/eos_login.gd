@@ -1,7 +1,7 @@
 extends Node
 class_name EOSLogin
 
-static var local_user_id : String = ""
+var local_user_id : String = ""
 
 func _init() -> void:
 	var init_opts = EOS.Platform.InitializeOptions.new()
@@ -42,7 +42,7 @@ func _init() -> void:
 	
 	IEOS.connect_interface_login_callback.connect(_on_login)
 	IEOS.connect_interface_logout_callback.connect(_on_logout)
-	anonomous_login("Random Name")
+	await HAuth.login_anonymous_async("User")
 
 func _on_logging_interface(msg):
 	msg = EOS.Logging.LogMessage.from(msg)
@@ -55,6 +55,7 @@ func _on_login(data: Dictionary) -> void:
 		return
 	print_rich("[b]Login successfull[/b]: local_user_id=", data.local_user_id)
 	local_user_id = data.local_user_id
+	PeerConnect.local_user_id = local_user_id
 	
 func _on_logout(data: Dictionary) -> void:
 	if not data.success:
@@ -63,14 +64,6 @@ func _on_logout(data: Dictionary) -> void:
 		return
 	print_rich("[b]Logout successfull[/b]: local_user_id=", data.local_user_id)
 	local_user_id = data.local_user_id
-
-static func anonomous_login(username : String):
-	await HAuth.login_anonymous_async(username)
-	
-static func logout():
-	await HAuth.logout_async()
-	pass
-	
 	
 	
 	

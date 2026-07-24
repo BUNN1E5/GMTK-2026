@@ -1,4 +1,5 @@
 extends Node
+#class_name PeerConnect
 
 #P2P is direct party joining
 var local_user_id = ""
@@ -13,18 +14,22 @@ func _ready() -> void:
 
 func create_lobby():
 	var create_opts := EOS.Lobby.CreateLobbyOptions.new()
-	create_opts.bucket_id = EOSLogin.local_user_id
-	
+	create_opts.bucket_id = local_user_id
+	create_opts.max_lobby_members = 64
 	var lobby = await HLobbies.create_lobby_async(create_opts)
 	if(not lobby):
-		print("Lobby Creation Failed: ")
+		print("Lobby Creation Failed: " + EOS.result_str(lobby))
+		return
+	var result := peer.create_server(local_user_id)
+	if result != OK:
+		printerr("Failed to create client: " + EOS.result_str(result))
 		return
 	multiplayer.multiplayer_peer = peer
 	is_host = true
 	local_lobby = lobby
 	pass
 	
-func join_lobby(lobby_id : String):
+func join_lobby(lobby_id : String) -> bool:
 	var lobbies = await HLobbies.search_by_bucket_id_async(lobby_id)
 	if not lobbies:
 		printerr("No lobbies found")
@@ -35,11 +40,11 @@ func join_lobby(lobby_id : String):
 	var result := peer.create_client(lobby_id, lobby.owner_product_user_id)
 	if not result:
 		print("Failed to create clinet " + EOS.result_str(result))
-		return
+		return false
 	print("Connecting to " + lobby_id)
 	multiplayer.multiplayer_peer = peer
 	local_lobby = lobby
-	pass
+	return true
 
 func leave_lobby():
 	if peer:

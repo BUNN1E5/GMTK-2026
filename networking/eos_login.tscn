@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://c1gmqv74sq2lu"]
 
 [ext_resource type="Script" uid="uid://jgeoupl60086" path="res://networking/eos_login.gd" id="1_ne8va"]
+[ext_resource type="Script" uid="uid://hyisggpwv4qh" path="res://networking/test_connect.gd" id="2_vlqf8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_46qsk"]
+bg_color = Color(0.5628355, 0.6044661, 0.66196984, 1)
 
 [node name="EosLogin" type="Control" unique_id=1826531175]
 layout_mode = 3
@@ -9,4 +13,44 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_ne8va")
+
+[node name="Panel" type="Panel" parent="." unique_id=2121335848]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_46qsk")
+
+[node name="VSplitContainer" type="VSplitContainer" parent="Panel" unique_id=545663723]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+split_offsets = PackedInt32Array(0, 0, 0)
+script = ExtResource("2_vlqf8")
+
+[node name="TextEdit2" type="TextEdit" parent="Panel/VSplitContainer" unique_id=1237057573]
+custom_minimum_size = Vector2(0, 51.603)
+layout_mode = 2
+placeholder_text = "Your Lobby ID"
+editable = false
+
+[node name="TextEdit" type="TextEdit" parent="Panel/VSplitContainer" unique_id=297705303]
+custom_minimum_size = Vector2(0, 51.603)
+layout_mode = 2
+placeholder_text = "Lobby ID here"
+
+[node name="Button2" type="Button" parent="Panel/VSplitContainer" unique_id=190846763]
+layout_mode = 2
+text = "Create Lobby"
+
+[node name="Button" type="Button" parent="Panel/VSplitContainer" unique_id=1475106844]
+layout_mode = 2
+text = "Test Connect"
