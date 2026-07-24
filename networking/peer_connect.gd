@@ -38,8 +38,8 @@ func join_lobby(lobby_id : String) -> bool:
 	await HLobbies.join_by_id_async(lobby.lobby_id)
 
 	var result := peer.create_client(lobby_id, lobby.owner_product_user_id)
-	if not result:
-		print("Failed to create clinet " + EOS.result_str(result))
+	if not EOS.is_success(result):
+		print("Failed to create client " + EOS.result_str(result))
 		return false
 	print("Connecting to " + lobby_id)
 	multiplayer.multiplayer_peer = peer
