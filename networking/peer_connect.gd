@@ -12,6 +12,8 @@ var peer_user_ids : Array[int]
 func _ready() -> void:
 	pass
 
+
+
 func create_lobby(lobby_id):
 	var create_opts := EOS.Lobby.CreateLobbyOptions.new()
 	create_opts.bucket_id = local_user_id
@@ -46,7 +48,14 @@ func join_lobby(lobby_id : String) -> bool:
 	local_lobby = lobby
 	return true
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		# Do your safe saving or cleanup here
+		leave_lobby()
+		get_tree().quit() # Default behavior on desktop
+
 func leave_lobby():
+	print("Leaving or closing lobby")
 	if peer:
 		peer.close()
 	

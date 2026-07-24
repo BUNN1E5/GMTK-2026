@@ -1,0 +1,32 @@
+[gd_resource type="Theme" format=3 uid="uid://dydfk3rb10p7c"]
+
+[ext_resource type="FontFile" uid="uid://dhgagu1i7gvnx" path="res://ui/wingDongs.woff" id="1_ka7oj"]
+
+[resource]
+default_font = ExtResource("1_ka7oj")
+CodeEdit/fonts/font = ExtResource("1_ka7oj")
+ColorPickerButton/fonts/font = ExtResource("1_ka7oj")
+FoldableContainer/fonts/font = ExtResource("1_ka7oj")
+GraphNodeTitleLabel/fonts/font = ExtResource("1_ka7oj")
+ItemList/fonts/font = ExtResource("1_ka7oj")
+Label/fonts/font = ExtResource("1_ka7oj")
+LineEdit/fonts/font = ExtResource("1_ka7oj")
+LinkButton/fonts/font = ExtResource("1_ka7oj")
+MenuBar/fonts/font = ExtResource("1_ka7oj")
+MenuButton/fonts/font = ExtResource("1_ka7oj")
+OptionButton/fonts/font = ExtResource("1_ka7oj")
+PopupMenu/fonts/font = ExtResource("1_ka7oj")
+PopupMenu/fonts/font_separator = ExtResource("1_ka7oj")
+ProgressBar/fonts/font = ExtResource("1_ka7oj")
+RichTextLabel/fonts/bold_font = ExtResource("1_ka7oj")
+RichTextLabel/fonts/bold_italics_font = ExtResource("1_ka7oj")
+RichTextLabel/fonts/italics_font = ExtResource("1_ka7oj")
+RichTextLabel/fonts/mono_font = ExtResource("1_ka7oj")
+RichTextLabel/fonts/normal_font = ExtResource("1_ka7oj")
+TabBar/fonts/font = ExtResource("1_ka7oj")
+TabContainer/fonts/font = ExtResource("1_ka7oj")
+TextEdit/fonts/font = ExtResource("1_ka7oj")
+TooltipLabel/fonts/font = ExtResource("1_ka7oj")
+Tree/fonts/font = ExtResource("1_ka7oj")
+Tree/fonts/title_button_font = ExtResource("1_ka7oj")
+Window/fonts/title_font = ExtResource("1_ka7oj")

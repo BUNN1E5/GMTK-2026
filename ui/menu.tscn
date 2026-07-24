@@ -1,0 +1,164 @@
+[gd_scene format=3 uid="uid://cvynqvkena3u0"]
+
+[ext_resource type="Theme" uid="uid://dydfk3rb10p7c" path="res://ui/default.tres" id="1_bwjgb"]
+[ext_resource type="Script" uid="uid://da3t2fsy46myi" path="res://ui/tab_fill_container.gd" id="2_udkah"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_udkah"]
+content_margin_left = 42.5
+content_margin_top = 4.0
+content_margin_right = 42.5
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.6)
+border_width_left = 1
+border_width_right = 1
+border_color = Color(0.175, 0.175, 0.175, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4c782"]
+content_margin_left = 42.5
+content_margin_top = 4.0
+content_margin_right = 42.5
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+border_width_left = 1
+border_width_right = 1
+border_color = Color(0.175, 0.175, 0.175, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ot4n"]
+content_margin_left = 42.5
+content_margin_top = 4.0
+content_margin_right = 42.5
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+border_width_top = 2
+border_color = Color(1, 1, 1, 0.75)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fcydj"]
+content_margin_left = 42.5
+content_margin_top = 4.0
+content_margin_right = 42.5
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+border_width_left = 1
+border_width_right = 1
+border_color = Color(0.175, 0.175, 0.175, 1)
+corner_detail = 1
+
+[node name="Menu" type="Control" unique_id=1682398813]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -961.0
+offset_bottom = -451.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabContainer" type="TabContainer" parent="." unique_id=214077226]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_bwjgb")
+theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_udkah")
+theme_override_styles/tab_hovered = SubResource("StyleBoxFlat_4c782")
+theme_override_styles/tab_selected = SubResource("StyleBoxFlat_2ot4n")
+theme_override_styles/tab_disabled = SubResource("StyleBoxFlat_fcydj")
+tab_alignment = 1
+current_tab = 0
+script = ExtResource("2_udkah")
+
+[node name="1" type="ScrollContainer" parent="TabContainer" unique_id=1547702409]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/1" unique_id=1159884162]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="TabContainer/1/VBoxContainer" unique_id=867459070]
+layout_mode = 2
+text = "total clicks"
+
+[node name="Label2" type="Label" parent="TabContainer/1/VBoxContainer" unique_id=893314]
+layout_mode = 2
+text = "total clicks"
+
+[node name="Label3" type="Label" parent="TabContainer/1/VBoxContainer" unique_id=359778357]
+layout_mode = 2
+text = "total clicks"
+
+[node name="Label4" type="Label" parent="TabContainer/1/VBoxContainer" unique_id=1485765267]
+layout_mode = 2
+text = "total clicks"
+
+[node name="Label5" type="Label" parent="TabContainer/1/VBoxContainer" unique_id=1638123981]
+layout_mode = 2
+text = "total clicks"
+
+[node name="Label6" type="Label" parent="TabContainer/1/VBoxContainer" unique_id=283553032]
+layout_mode = 2
+text = "total clicks"
+
+[node name="Label7" type="Label" parent="TabContainer/1/VBoxContainer" unique_id=1910682968]
+layout_mode = 2
+text = "total clicks"
+
+[node name="Label8" type="Label" parent="TabContainer/1/VBoxContainer" unique_id=1365905561]
+layout_mode = 2
+text = "total clicks"
+
+[node name="Label9" type="Label" parent="TabContainer/1/VBoxContainer" unique_id=721099800]
+layout_mode = 2
+text = "total clicks"
+
+[node name="2" type="ScrollContainer" parent="TabContainer" unique_id=405713324]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/2" unique_id=461965387]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="TabContainer/2/VBoxContainer" unique_id=1649222230]
+layout_mode = 2
+text = "total clicks"
+
+[node name="Label2" type="Label" parent="TabContainer/2/VBoxContainer" unique_id=947127330]
+layout_mode = 2
+text = "total clicks"
+
+[node name="Label3" type="Label" parent="TabContainer/2/VBoxContainer" unique_id=841975865]
+layout_mode = 2
+text = "total clicks"
+
+[node name="Label4" type="Label" parent="TabContainer/2/VBoxContainer" unique_id=27323573]
+layout_mode = 2
+text = "total clicks"
+
+[node name="Label5" type="Label" parent="TabContainer/2/VBoxContainer" unique_id=1828505897]
+layout_mode = 2
+text = "total clicks"
+
+[node name="Label6" type="Label" parent="TabContainer/2/VBoxContainer" unique_id=1470435175]
+layout_mode = 2
+text = "total clicks"
+
+[node name="Label7" type="Label" parent="TabContainer/2/VBoxContainer" unique_id=1400030039]
+layout_mode = 2
+text = "total clicks"
+
+[node name="Label8" type="Label" parent="TabContainer/2/VBoxContainer" unique_id=815833265]
+layout_mode = 2
+text = "total clicks"
+
+[node name="Label9" type="Label" parent="TabContainer/2/VBoxContainer" unique_id=1050912355]
+layout_mode = 2
+text = "total clicks"
