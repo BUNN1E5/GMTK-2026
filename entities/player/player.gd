@@ -36,6 +36,7 @@ func global_input(event : InputEvent):
 
 @rpc("any_peer", "call_local", "unreliable_ordered", 0)
 func primary_action():
+	print("%d Did Primary Action", multiplayer.get_unique_id())
 	if player_data and player_data.class_data:
 		player_data.class_data.primary_action()
 	pass
