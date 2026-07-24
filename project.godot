@@ -31,10 +31,8 @@ GlobalInput="*uid://cim3jqmffvjl1"
 
 [display]
 
-window/size/resizable=false
 window/size/always_on_top=true
 window/size/transparent=true
-window/size/no_focus=true
 window/subwindows/embed_subwindows=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"

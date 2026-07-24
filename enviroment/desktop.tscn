@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://kqt61txaw7bv"]
 
 [ext_resource type="Script" uid="uid://dt7m352pye476" path="res://enviroment/desktop.gd" id="1_3kuve"]
+[ext_resource type="PackedScene" uid="uid://i2uvjck1bcn4" path="res://entities/player/player.tscn" id="2_g8o65"]
 
 [node name="Desktop" type="Node2D" unique_id=177165024]
 script = ExtResource("1_3kuve")
+
+[node name="Player" parent="." unique_id=949443592 instance=ExtResource("2_g8o65")]
+position = Vector2(144, 169)

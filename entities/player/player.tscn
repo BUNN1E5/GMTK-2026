@@ -1,6 +1,12 @@
 [gd_scene format=3 uid="uid://i2uvjck1bcn4"]
 
 [ext_resource type="Script" uid="uid://c1mfcjb0bnwvi" path="res://entities/player/player.gd" id="1_symyc"]
+[ext_resource type="Texture2D" uid="uid://b8w4a6h3moy0n" path="res://entities/player/classes/elf/frame_#03d-0.png" id="2_abrql"]
 
 [node name="Player" type="Node2D" unique_id=949443592]
 script = ExtResource("1_symyc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=863917641]
+position = Vector2(313, 313)
+scale = Vector2(0.40039063, 0.4013672)
+texture = ExtResource("2_abrql")
