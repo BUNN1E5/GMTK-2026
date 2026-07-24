@@ -5,6 +5,14 @@
 [ext_resource type="Texture2D" uid="uid://div5h2nv6j543" path="res://entities/Enemies/Cactus Guy/frame0001.png" id="3_qdinc"]
 [ext_resource type="Texture2D" uid="uid://8cckddfrxxy6" path="res://entities/Enemies/Cactus Guy/frame0002.png" id="4_khg8r"]
 [ext_resource type="Texture2D" uid="uid://fvqg67j25vgh" path="res://entities/Enemies/Cactus Guy/frame0003.png" id="5_rl1mp"]
+[ext_resource type="Texture2D" uid="uid://cdbfqtsygaljv" path="res://entities/Enemies/Slime guy/frame0000.png" id="6_k0vm2"]
+[ext_resource type="Texture2D" uid="uid://cy4t014jmloyh" path="res://entities/Enemies/Slime guy/frame0001.png" id="7_vonkg"]
+[ext_resource type="Texture2D" uid="uid://cogcf4u8sffvn" path="res://entities/Enemies/Slime guy/frame0002.png" id="8_twma2"]
+[ext_resource type="Texture2D" uid="uid://cppvki17m0fvf" path="res://entities/Enemies/Slime guy/frame0003.png" id="9_dv7u2"]
+[ext_resource type="Texture2D" uid="uid://by4fn7x12h4hm" path="res://entities/Enemies/Slime guy/frame0004.png" id="10_ayion"]
+[ext_resource type="Texture2D" uid="uid://dtvwfd3ybc2wg" path="res://entities/Enemies/Slime guy/frame0005.png" id="11_8rtsq"]
+[ext_resource type="Texture2D" uid="uid://bond0gslks8hh" path="res://entities/Enemies/Slime guy/frame0006.png" id="12_gtihl"]
+[ext_resource type="Texture2D" uid="uid://cx1blvk2ugpvd" path="res://entities/Enemies/Slime guy/frame0007.png" id="13_taxxv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dflp1"]
 animations = [{
@@ -26,12 +34,50 @@ animations = [{
 "speed": 2.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_t0ovx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_k0vm2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_vonkg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_twma2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_dv7u2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ayion")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_8rtsq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_gtihl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_taxxv")
+}],
+"loop": 1,
+"name": &"hop",
+"speed": 5.0
+}]
+
 [node name="Enemy" type="Node2D" unique_id=226358763]
 script = ExtResource("1_67p8a")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=784717057]
+[node name="cactusGuy" type="AnimatedSprite2D" parent="." unique_id=784717057]
 position = Vector2(997, 301)
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_dflp1")
 animation = &"wiggle"
-frame_progress = 0.8025176
+frame_progress = 0.12564792
+
+[node name="slimeGuy" type="AnimatedSprite2D" parent="." unique_id=121540789]
+position = Vector2(548, 563)
+sprite_frames = SubResource("SpriteFrames_t0ovx")
+animation = &"hop"
+frame_progress = 0.50997496
