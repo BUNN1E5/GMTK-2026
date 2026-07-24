@@ -2,21 +2,22 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8w4a6h3moy0n"
-path="res://.godot/imported/frame_#03d-0.png-7a6252623df0cf96f8b7fd825c8c15b6.ctex"
+uid="uid://ccivb7anwmx7w"
+path="res://.godot/imported/frame0001.png-de50481d5a1cf9038fd46b0084d8ed34.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/player/classes/elf/frame_#03d-0.png"
-dest_files=["res://.godot/imported/frame_#03d-0.png-7a6252623df0cf96f8b7fd825c8c15b6.ctex"]
+source_file="res://entities/player/classes/elf/frame0001.png"
+dest_files=["res://.godot/imported/frame0001.png-de50481d5a1cf9038fd46b0084d8ed34.ctex"]
 
 [params]
 
 compress/mode=0
 compress/high_quality=false
+compress/high_quality_mode=0
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
