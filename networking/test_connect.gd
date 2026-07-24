@@ -10,7 +10,7 @@ func _ready() -> void:
 	create_lobby_button.pressed.connect(_on_create_lobby_button_pressed)
 
 func _on_connect_button_pressed() -> void:
-	var result = await PeerConnect.join_lobby(lobby_id_display)
+	var result = await PeerConnect.join_lobby(lobby_id_display.text)
 	local_user_id_display.text = "Connected" if result else "Failed"
 	pass
 
