@@ -10,9 +10,9 @@ var peer : EOSGMultiplayerPeer = EOSGMultiplayerPeer.new()
 var peer_user_ids : Array[int]
 
 func _ready() -> void:
+	multiplayer.peer_connected.connect(_on_peer_connected)
+	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
 	pass
-
-
 
 func create_lobby(lobby_id):
 	var create_opts := EOS.Lobby.CreateLobbyOptions.new()

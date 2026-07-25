@@ -1,23 +1,23 @@
 extends Node
 class_name Player
 
-var is_local : bool = true
 var player_data : PlayerData
 
 func _ready() -> void:
-	if not is_local: 
-		return
 	GlobalInput.global_input_event.connect(global_input)
 	pass
 
-static func create_payer(peer_id : int, player_data : PlayerData) -> Player:
+static func create_payer(peer_id : int, is_local: bool, player_data : PlayerData) -> Player:
 	var p = Player.new()
 	p.player_data = player_data
 	p.set_multiplayer_authority(peer_id)
-	p.is_local = (peer_id == p.multiplayer.get_unique_id())
+	p.is_local = is_local
 	p.name = player_data.uuid
 	return p
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		PlayerData.save(player_data)
 #The global input event does work
 #however it does not have the attributes associated with an input event
 #such as is pressed
@@ -38,6 +38,6 @@ func global_input(event : InputEvent):
 func primary_action():
 	print("%d Did Primary Action", multiplayer.get_unique_id())
 	if player_data and player_data.class_data:
-		player_data.class_data.primary_action()
+		player_data.class_data.primary_action(self)
 	pass
 	

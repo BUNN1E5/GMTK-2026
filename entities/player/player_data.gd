@@ -26,9 +26,55 @@ func _init():
 		costume_data = CostumeData.new()
 	pass
 
+
+func to_dict() -> Dictionary:
+	return {
+		"name": name,
+		"uuid": uuid,
+		"total_clicks": total_clicks,
+		"exp": exp,
+		"exp_req": exp_req,
+		"lvl": lvl,
+		"str": str,
+		"dex": dex,
+		"wil": wil,
+		"luk": luk,
+		"foc": foc,
+		"class_data": class_data.to_dict() if class_data else null,
+		"costume_data": costume_data.to_dict() if costume_data else null
+	}
+
+
+static func from_dict(dict: Dictionary) -> PlayerData:
+	var pdata = PlayerData.new()
+	if dict.is_empty():
+		return pdata
+
+	pdata.name = dict.get("name", "")
+	pdata.uuid = dict.get("uuid", "")
+	pdata.total_clicks = dict.get("total_clicks", 0)
+	pdata.exp = dict.get("exp", 0)
+	pdata.exp_req = dict.get("exp_req", 0)
+	pdata.lvl = dict.get("lvl", 1)
+
+	pdata.str = dict.get("str", 1.0)
+	pdata.dex = dict.get("dex", 1.0)
+	pdata.wil = dict.get("wil", 1.0)
+	pdata.luk = dict.get("luk", 1.0)
+	pdata.foc = dict.get("foc", 1.0)
+
+	if dict.get("class_data") != null and dict["class_data"] is Dictionary:
+		pdata.class_data = ClassData.from_dict(dict["class_data"])
+
+	if dict.get("costume_data") != null and dict["costume_data"] is Dictionary:
+		pdata.costume_data = CostumeData.from_dict(dict["costume_data"])
+	return pdata
+	
 static func load() -> PlayerData:
+	print("Loading Player Data")
 	return ResourceLoader.load("user://savedata.tres") as PlayerData
 
 #TODO :: Potentially allow multiple characters?
 static func save(player_data : PlayerData):
+	print("Saving Player Data")
 	ResourceSaver.save(player_data, "user://savedata.tres")
