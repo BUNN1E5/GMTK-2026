@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://b24oedttvxvlh"]
+
+[node name="Ui" type="Control" unique_id=446202247]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=272353803]
+layout_mode = 0
+offset_left = 504.0
+offset_top = 325.0
+offset_right = 544.0
+offset_bottom = 365.0

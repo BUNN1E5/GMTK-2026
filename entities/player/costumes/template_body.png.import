@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vv13mvbd80hj"
-path="res://.godot/imported/frame0004.png-dda7df1fc7d69089b7c2b8770d93e70a.ctex"
+uid="uid://cjt1paaj7ayw"
+path="res://.godot/imported/template_body.png-fc3c07efa870f47b6dc115c75a1f6c0e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/player/classes/man/Wiz/frame0004.png"
-dest_files=["res://.godot/imported/frame0004.png-dda7df1fc7d69089b7c2b8770d93e70a.ctex"]
+source_file="res://entities/player/costumes/template_body.png"
+dest_files=["res://.godot/imported/template_body.png-fc3c07efa870f47b6dc115c75a1f6c0e.ctex"]
 
 [params]
 
