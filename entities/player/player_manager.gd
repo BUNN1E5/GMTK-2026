@@ -5,6 +5,10 @@ extends MultiplayerSpawner
 var players: Dictionary[int, Player]
 var local: Player
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+			PlayerData.save(local.player_data, true)
+
 func _ready() -> void:
 	# 1. Register custom spawn function so server and clients instantiate nodes the same way
 	spawn_function = _custom_spawn

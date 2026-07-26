@@ -14,13 +14,14 @@ var window : Window
 func _ready() -> void:
 	pass
 	
+func test(event):
+	print(event)
 func apply_player_data(player_data : PlayerData):
 	self.player_data = player_data
-	
-	if GlobalInput.global_input_event.is_connected(global_input):
-		GlobalInput.global_input_event.disconnect(global_input)
+	if GlobalInput.global_input_event_ex.is_connected(global_input):
+		GlobalInput.global_input_event_ex.disconnect(global_input)
 	if is_multiplayer_authority():
-		GlobalInput.global_input_event.connect(global_input)
+		GlobalInput.global_input_event_ex.connect(global_input)
 	
 	if not player_data.costume_data:
 		printerr("Player %s Does not have any costume data", player_data.name)
@@ -41,7 +42,6 @@ func apply_player_data(player_data : PlayerData):
 	mouth.z_index = get_multiplayer_authority()
 
 func get_size():
-	print(transform.get_scale())
 	return body.get_rect().size * transform.get_scale()
 
 func get_collision_polygon():
@@ -69,11 +69,6 @@ func get_collision_polygon():
 	var polygons = bm.opaque_to_polygons(Rect2i(Vector2i.ZERO, base_size))
 	return polygons
 
-func _notification(what: int) -> void:
-	if what == NOTIFICATION_WM_CLOSE_REQUEST:
-		if is_multiplayer_authority(): #Only save local player
-			PlayerData.save(player_data, true)
-
 
 #The global input event does work
 #however it does not have the attributes associated with an input event
@@ -81,22 +76,21 @@ func _notification(what: int) -> void:
 #We dont actually care about that, so we can kinda just assume that
 #we only care about every OTHER input
 #OR we only care about unique inputs
-var last_event : InputEvent
-func global_input(event : InputEvent):
+var last : Dictionary[String, bool]
+
+func global_input(event):
 	if event == null:
 		printerr("event is null, somthing is really wrong")
 		return
 	
-	if last_event == null:
-		last_event = event
-		
-	if event is InputEventMouseMotion:
-		return
-		
-	if not event.is_match(last_event):
+	var key = event.GodotInputEventNames[0]
+	if(not last.has(key)):
+		last.set(key, event.pressed)	
+	if(last[key] == false && event.pressed == true):
 		primary_action.rpc()
-		pass
-	last_event = event
+	last[key] = event.pressed
+	#if event is InputEventMouseMotion:
+	#	return
 	pass
 
 @rpc("any_peer", "call_local", "unreliable_ordered", 0)

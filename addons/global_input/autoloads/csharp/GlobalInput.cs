@@ -20,19 +20,19 @@ public partial class GlobalInput : Node
 	// used to track state of actions and method callers
 	static Dictionary<string, Dictionary<string, Dictionary<string, Variant>>> actionStates = []; public static Dictionary<string, Dictionary<string, Dictionary<string, Variant>>> ActionStates { get { return actionStates; } }
 	
-    #region Godot Methods
-    public override void _EnterTree()
+	#region Godot Methods
+	public override void _EnterTree()
 	{
 		InitializeSelf();
 	}
-    public override void _ExitTree()
+	public override void _ExitTree()
 	{
 		if (Instance != this) return;
 
 		DisposeSelf();
 	}
 
-    public override void _Notification(int what)
+	public override void _Notification(int what)
 	{
 		switch ((long)what)
 		{
@@ -65,7 +65,7 @@ public partial class GlobalInput : Node
 		}
 	}
 
-    public override void _Ready()
+	public override void _Ready()
 	{
 		InitializeSignalCallbacks();
 		InitializeEventStates();
