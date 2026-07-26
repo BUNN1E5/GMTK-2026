@@ -9,28 +9,29 @@
 [ext_resource type="Texture2D" uid="uid://r6k0j6nf5f0f" path="res://entities/player/costumes/mouth/template_mouth.png" id="7_a1qjk"]
 
 [node name="Player" type="Node2D" unique_id=949443592]
+scale = Vector2(0.4, 0.4)
 script = ExtResource("1_symyc")
 
 [node name="Body" type="Sprite2D" parent="." unique_id=863917641]
-scale = Vector2(0.40039063, 0.4013672)
+position = Vector2(0, 50)
 texture = ExtResource("2_qiwj3")
 
 [node name="Clothing" type="Sprite2D" parent="." unique_id=75216385]
-scale = Vector2(0.40039063, 0.4013672)
+position = Vector2(0, 50)
 texture = ExtResource("3_26q78")
 
 [node name="Ears" type="Sprite2D" parent="." unique_id=97602668]
-scale = Vector2(0.40039063, 0.4013672)
+position = Vector2(0, 50)
 texture = ExtResource("4_bectd")
 
 [node name="Eyes" type="Sprite2D" parent="." unique_id=1884554280]
-scale = Vector2(0.40039063, 0.4013672)
+position = Vector2(0, 50)
 texture = ExtResource("5_wvtmh")
 
 [node name="Hair" type="Sprite2D" parent="." unique_id=1704938185]
-scale = Vector2(0.40039063, 0.4013672)
+position = Vector2(0, 50)
 texture = ExtResource("6_7thud")
 
 [node name="Mouth" type="Sprite2D" parent="." unique_id=2097028859]
-scale = Vector2(0.40039063, 0.4013672)
+position = Vector2(0, 50)
 texture = ExtResource("7_a1qjk")

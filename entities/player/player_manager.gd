@@ -62,12 +62,11 @@ func _custom_spawn(data: Variant) -> Node:
 	player_instance.set_multiplayer_authority(peer_id)
 	
 	var player_data = PlayerData.from_dict(data_dict)
-	player_instance.apply_player_data.call_deferred(player_data)
-	
-	print(Desktop.screen_size)
-	player_instance.position = Vector2(120, 570)
-	
-	Desktop.update_player_clickables()
+	(func(player_data):
+		player_instance.apply_player_data(player_data)
+		player_instance.position = Desktop.bl_screen_pos(player_instance.get_size()/2 + Vector2(0, 0))
+		pass
+	).call_deferred(player_data)
 	
 	# Track local player instance for quick access
 	if peer_id == multiplayer.get_unique_id():

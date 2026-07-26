@@ -8,6 +8,10 @@ func _init() -> void:
 func _ready() -> void:
 	get_window().mouse_passthrough_polygon = [0,0,0,0]
 	pass
+	
+func bl_screen_pos(pos : Vector2):
+	var viewport_height : float = get_viewport().get_visible_rect().size.y
+	return Vector2(pos.x, viewport_height - pos.y)
 
 func update_player_clickables():
 	get_window().mouse_passthrough_polygon = [0,0,0,0]
