@@ -38,7 +38,7 @@ func apply_player_data(player_data : PlayerData):
 	hair.z_index = get_multiplayer_authority()
 	mouth.z_index = get_multiplayer_authority()
 
-func get_collision_shape():
+func get_collision_polygon():
 	var active_textures: Array[Texture2D] = []
 	for sprite in [body, clothing, ears, eyes, hair, mouth]:
 		active_textures.append(sprite.texture)

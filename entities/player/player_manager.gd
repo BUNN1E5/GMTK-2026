@@ -8,6 +8,7 @@ var local: Player
 func _ready() -> void:
 	# 1. Register custom spawn function so server and clients instantiate nodes the same way
 	spawn_function = _custom_spawn
+	spawn_path = get_path()
 	
 	multiplayer.connected_to_server.connect(_on_connect_to_server)
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
@@ -65,6 +66,11 @@ func _custom_spawn(data: Variant) -> Node:
 	
 	var player_data = PlayerData.from_dict(data_dict)
 	player_instance.apply_player_data.call_deferred(player_data)
+	
+	print(Desktop.screen_size)
+	player_instance.position = Vector2(120, 570)
+	
+	Desktop.update_player_clickables()
 	
 	# Track local player instance for quick access
 	if peer_id == multiplayer.get_unique_id():

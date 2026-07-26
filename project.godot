@@ -28,8 +28,10 @@ HLeaderboards="*uid://b06khhf20mplm"
 HLobbies="*uid://6iqvm33q0tb1"
 HP2P="*uid://u6ae5fpm6l8q"
 HSessions="*uid://bieh2rxxahuu2"
+Desktop="*uid://dt7m352pye476"
 GlobalInput="*uid://cim3jqmffvjl1"
 PeerConnect="*uid://87qe7ha7u2wu"
+PlayerManager="*uid://c22mv4vtqxr56"
 
 [display]
 
