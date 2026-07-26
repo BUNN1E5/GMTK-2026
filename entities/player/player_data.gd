@@ -75,9 +75,12 @@ static func load() -> PlayerData:
 	if(ResourceLoader.exists("user://savedata.tres")):
 		print("Found Player Data")
 		return ResourceLoader.load("user://savedata.tres") as PlayerData
-	return null
+	
+	print("Found No Player Data, Creating a new one")
+	return PlayerData.new()
 
 #TODO :: Potentially allow multiple characters?
-static func save(player_data : PlayerData):
-	print("Saving Player Data")
+static func save(player_data : PlayerData, print : bool):
+	if(print):
+		print("Saving Player Data")
 	ResourceSaver.save(player_data, "user://savedata.tres")

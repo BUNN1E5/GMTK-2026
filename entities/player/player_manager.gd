@@ -19,9 +19,6 @@ func _ready() -> void:
 
 func _send_local_player_spawn_request() -> void:
 	var player_data = PlayerData.load()
-	if not player_data:
-		player_data = load("res://entities/player/base_player_data.tres") as PlayerData
-	
 	var data_dict = player_data.to_dict()
 	
 	if multiplayer.is_server():
