@@ -5,9 +5,13 @@
 [ext_resource type="Texture2D" uid="uid://div5h2nv6j543" path="res://entities/Enemies/Cactus Guy/frame0001.png" id="3_qdinc"]
 [ext_resource type="Texture2D" uid="uid://8cckddfrxxy6" path="res://entities/Enemies/Cactus Guy/frame0002.png" id="4_khg8r"]
 [ext_resource type="Texture2D" uid="uid://fvqg67j25vgh" path="res://entities/Enemies/Cactus Guy/frame0003.png" id="5_rl1mp"]
+[ext_resource type="Texture2D" uid="uid://cttyb1td1cfp" path="res://ui/health bar/healthbar_under.png" id="6_dv7u2"]
 [ext_resource type="Texture2D" uid="uid://cdbfqtsygaljv" path="res://entities/Enemies/Slime guy/frame0000.png" id="6_k0vm2"]
+[ext_resource type="Texture2D" uid="uid://b5r53t0d5siiy" path="res://ui/health bar/healthbar_over.png" id="7_ayion"]
 [ext_resource type="Texture2D" uid="uid://cy4t014jmloyh" path="res://entities/Enemies/Slime guy/frame0001.png" id="7_vonkg"]
+[ext_resource type="Texture2D" uid="uid://c6skwbeo53cxy" path="res://ui/health bar/healthbar_progress.png" id="8_8rtsq"]
 [ext_resource type="Texture2D" uid="uid://cogcf4u8sffvn" path="res://entities/Enemies/Slime guy/frame0002.png" id="8_twma2"]
+[ext_resource type="FontFile" uid="uid://cs650h0w4wkq6" path="res://ui/WINGDONGS.woff" id="9_ayion"]
 [ext_resource type="Texture2D" uid="uid://cppvki17m0fvf" path="res://entities/Enemies/Slime guy/frame0003.png" id="9_dv7u2"]
 [ext_resource type="Texture2D" uid="uid://by4fn7x12h4hm" path="res://entities/Enemies/Slime guy/frame0004.png" id="10_ayion"]
 [ext_resource type="Texture2D" uid="uid://dtvwfd3ybc2wg" path="res://entities/Enemies/Slime guy/frame0005.png" id="11_8rtsq"]
@@ -76,8 +80,54 @@ sprite_frames = SubResource("SpriteFrames_dflp1")
 animation = &"wiggle"
 frame_progress = 0.12564792
 
+[node name="cactusHealthBar" type="TextureProgressBar" parent="cactusGuy" unique_id=692501973]
+offset_left = -262.66663
+offset_top = -270.66663
+offset_right = 3177.3335
+offset_bottom = 1169.3334
+scale = Vector2(0.135, 0.135)
+max_value = 1000.0
+value = 1000.0
+texture_under = ExtResource("6_dv7u2")
+texture_over = ExtResource("7_ayion")
+texture_progress = ExtResource("8_8rtsq")
+tint_under = Color(0, 0, 0, 1)
+tint_over = Color(0.011764706, 0, 0.003921569, 1)
+
+[node name="Label2" type="Label" parent="cactusGuy/cactusHealthBar" unique_id=1427501301]
+layout_mode = 0
+offset_left = 632.09814
+offset_top = 128.39471
+offset_right = 2604.1
+offset_bottom = 1128.3948
+theme_override_fonts/font = ExtResource("9_ayion")
+theme_override_font_sizes/font_size = 500
+
 [node name="slimeGuy" type="AnimatedSprite2D" parent="." unique_id=121540789]
 position = Vector2(548, 563)
 sprite_frames = SubResource("SpriteFrames_t0ovx")
 animation = &"hop"
 frame_progress = 0.50997496
+
+[node name="slimeHealthBar" type="TextureProgressBar" parent="slimeGuy" unique_id=2008252218]
+offset_left = -178.00003
+offset_top = -178.0
+offset_right = 3262.0
+offset_bottom = 1262.0
+scale = Vector2(0.1, 0.1)
+max_value = 1000.0
+value = 1000.0
+texture_under = ExtResource("6_dv7u2")
+texture_over = ExtResource("7_ayion")
+texture_progress = ExtResource("8_8rtsq")
+tint_under = Color(0, 0, 0, 1)
+tint_over = Color(0.012617188, 0.006728449, 0.0033088657, 1)
+
+[node name="Label" type="Label" parent="slimeGuy/slimeHealthBar" unique_id=316766039]
+layout_mode = 0
+offset_left = 610.00024
+offset_top = 120.0
+offset_right = 2582.0002
+offset_bottom = 1120.0
+theme_override_fonts/font = ExtResource("9_ayion")
+theme_override_font_sizes/font_size = 500
