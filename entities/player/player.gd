@@ -2,7 +2,6 @@ extends Node2D
 class_name Player
 
 var player_data : PlayerData
-var window : Window
 
 @onready var body: Sprite2D = $Body
 @onready var clothing: Sprite2D = $Clothing
@@ -52,7 +51,7 @@ func get_collision_polygon():
 	if active_textures.is_empty():
 		return []
 	
-	var base_size = active_textures[0].get_size()
+	var base_size = active_textures[0].get_size() as Vector2i
 	var master_image = Image.create(base_size.x, base_size.y, false, Image.FORMAT_RGBA8)
 	var rect = Rect2i(Vector2i.ZERO, base_size)
 	

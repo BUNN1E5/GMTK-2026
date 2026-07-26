@@ -5,4 +5,3 @@
 [node name="Desktop" type="Node2D" unique_id=177165024]
 
 [node name="Enemy" parent="." unique_id=226358763 instance=ExtResource("3_vou16")]
-visible = false

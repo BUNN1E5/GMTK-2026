@@ -131,3 +131,10 @@ offset_right = 2582.0002
 offset_bottom = 1120.0
 theme_override_fonts/font = ExtResource("9_ayion")
 theme_override_font_sizes/font_size = 500
+
+[node name="Button" type="Button" parent="." unique_id=2058831328]
+offset_right = 169.0
+offset_bottom = 175.0
+theme_override_colors/font_color = Color(0.58506155, 0.58506244, 0.58506167, 1)
+theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+text = "Test"

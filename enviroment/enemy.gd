@@ -10,6 +10,7 @@ var slimeText:String
 var cactusText:String
 
 func _ready():
+	print("Enemy Script Start")
 	cactusHP = cactus_health_bar.value
 	slimeHP = slime_health_bar.value
 	slimeText = "hp:%s/%s" % [slimeHP, MAX_HP]

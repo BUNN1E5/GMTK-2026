@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://cs650h0w4wkq6"
-path="res://.godot/imported/wingDongs.woff-f6397eeb05cb365b79ef5d3f80c0f7ad.fontdata"
+path="res://.godot/imported/WINGDONGS.woff-691a27c39ae0d36c6c2feafb6e2f84de.fontdata"
 
 [deps]
 
-source_file="res://ui/wingDongs.woff"
-dest_files=["res://.godot/imported/wingDongs.woff-f6397eeb05cb365b79ef5d3f80c0f7ad.fontdata"]
+source_file="res://ui/WINGDONGS.woff"
+dest_files=["res://.godot/imported/WINGDONGS.woff-691a27c39ae0d36c6c2feafb6e2f84de.fontdata"]
 
 [params]
 
