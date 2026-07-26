@@ -72,7 +72,10 @@ static func from_dict(dict: Dictionary) -> PlayerData:
 	
 static func load() -> PlayerData:
 	print("Loading Player Data")
-	return ResourceLoader.load("user://savedata.tres") as PlayerData
+	if(ResourceLoader.exists("user://savedata.tres")):
+		print("Found Player Data")
+		return ResourceLoader.load("user://savedata.tres") as PlayerData
+	return null
 
 #TODO :: Potentially allow multiple characters?
 static func save(player_data : PlayerData):

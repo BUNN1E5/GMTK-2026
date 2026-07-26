@@ -1,12 +1,36 @@
 [gd_scene format=3 uid="uid://i2uvjck1bcn4"]
 
 [ext_resource type="Script" uid="uid://c1mfcjb0bnwvi" path="res://entities/player/player.gd" id="1_symyc"]
-[ext_resource type="Texture2D" uid="uid://dpk6o8u8po27w" path="res://entities/player/classes/elf/frame0000.png" id="2_abrql"]
+[ext_resource type="Texture2D" uid="uid://cjt1paaj7ayw" path="res://entities/player/costumes/template_body.png" id="2_qiwj3"]
+[ext_resource type="Texture2D" uid="uid://dgro4sik4beqd" path="res://entities/player/costumes/clothing/template_clothing.png" id="3_26q78"]
+[ext_resource type="Texture2D" uid="uid://chbvcajcoen5p" path="res://entities/player/costumes/ears/template_ears.png" id="4_bectd"]
+[ext_resource type="Texture2D" uid="uid://boou67kmnky1e" path="res://entities/player/costumes/eyes/template_eyes.png" id="5_wvtmh"]
+[ext_resource type="Texture2D" uid="uid://cpj61468iucwm" path="res://entities/player/costumes/hair/template_hair.png" id="6_7thud"]
+[ext_resource type="Texture2D" uid="uid://r6k0j6nf5f0f" path="res://entities/player/costumes/mouth/template_mouth.png" id="7_a1qjk"]
 
 [node name="Player" type="Node2D" unique_id=949443592]
 script = ExtResource("1_symyc")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=863917641]
-position = Vector2(313, 313)
+[node name="Body" type="Sprite2D" parent="." unique_id=863917641]
 scale = Vector2(0.40039063, 0.4013672)
-texture = ExtResource("2_abrql")
+texture = ExtResource("2_qiwj3")
+
+[node name="Clothing" type="Sprite2D" parent="." unique_id=75216385]
+scale = Vector2(0.40039063, 0.4013672)
+texture = ExtResource("3_26q78")
+
+[node name="Ears" type="Sprite2D" parent="." unique_id=97602668]
+scale = Vector2(0.40039063, 0.4013672)
+texture = ExtResource("4_bectd")
+
+[node name="Eyes" type="Sprite2D" parent="." unique_id=1884554280]
+scale = Vector2(0.40039063, 0.4013672)
+texture = ExtResource("5_wvtmh")
+
+[node name="Hair" type="Sprite2D" parent="." unique_id=1704938185]
+scale = Vector2(0.40039063, 0.4013672)
+texture = ExtResource("6_7thud")
+
+[node name="Mouth" type="Sprite2D" parent="." unique_id=2097028859]
+scale = Vector2(0.40039063, 0.4013672)
+texture = ExtResource("7_a1qjk")
