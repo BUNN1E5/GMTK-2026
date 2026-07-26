@@ -83,8 +83,13 @@ func _notification(what: int) -> void:
 #OR we only care about unique inputs
 var last_event : InputEvent
 func global_input(event : InputEvent):
+	if event == null:
+		printerr("event is null, somthing is really wrong")
+		return
+	
 	if last_event == null:
 		last_event = event
+		
 	if event is InputEventMouseMotion:
 		return
 		
