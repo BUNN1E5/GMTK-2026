@@ -34,7 +34,21 @@ func _send_local_player_spawn_request() -> void:
 
 func _on_connect_to_server() -> void:
 	# Client calls this after establishing a connection
+	rpc_id(1, "_resync_existing_players")
 	_send_local_player_spawn_request()
+
+@rpc("any_peer", "call_local", "reliable")
+func _resync_existing_players() -> void:
+	if not multiplayer.is_server():
+		return
+	
+	var peer_id = multiplayer.get_remote_sender_id()
+	
+	# Send all existing players to the new client
+	for existing_peer_id in players.keys():
+		var player_data = players[existing_peer_id].player_data
+		var data_dict = player_data.to_dict()
+		rpc_id(peer_id, "_request_spawn", {"peer_id": existing_peer_id, "data": data_dict})
 
 @rpc("any_peer", "call_local", "reliable")
 func _request_spawn(data_dict: Dictionary) -> void:

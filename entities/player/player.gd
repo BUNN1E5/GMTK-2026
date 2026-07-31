@@ -15,7 +15,7 @@ var player_data : PlayerData
 @export var randomize_costume = false
 func _randomize_costume():
 	player_data.costume_data.randomize_all_costumes()
-	update_costume(player_data.costume_data)
+	update_costume.rpc(player_data.costume_data)
 
 func _process(delta: float) -> void:
 	if randomize_costume:
@@ -60,9 +60,9 @@ func _notification(what: int) -> void:
 	# Intercept the low-level engine notification
 	if what == NOTIFICATION_TRANSFORM_CHANGED:
 		update_mouse_passthru()
-		set_remote_position(position)
+		set_remote_position.rpc(position)
 
-@rpc("any_peer", "call_remote", "unreliable", 0)
+@rpc("any_peer", "call_local", "unreliable", 0)
 func set_remote_position(position):
 	self.position = position
 	pass
@@ -73,7 +73,7 @@ func update_mouse_passthru():
 	queue_redraw()
 	pass
 
-@rpc("authority", "call_remote", "reliable", 0)
+@rpc("authority", "call_local", "reliable", 0)
 func update_costume(costume_data : CostumeData):
 	#body.texture = player_data.costume_data.get_costume_texture("body")
 	clothing.texture = costume_data.get_costume_texture("clothing")
@@ -84,7 +84,6 @@ func update_costume(costume_data : CostumeData):
 	
 	collision_polygon = get_collision_polygon()
 	update_mouse_passthru()
-	
 	pass
 
 func update_class(class_data : ClassData):
