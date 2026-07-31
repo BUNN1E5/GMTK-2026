@@ -70,12 +70,13 @@ func _notification(what: int) -> void:
 	# Intercept the low-level engine notification
 	if what == NOTIFICATION_TRANSFORM_CHANGED:
 		update_mouse_passthru()
-		if is_multiplayer_authority():
-			set_remote_transform.rpc(transform, window.content_scale_size)
+		set_remote_transform.rpc(transform, window.content_scale_size)
 
-@rpc("any_peer", "call_local", "unreliable", 0)
+@rpc("authority", "call_local", "unreliable", 0)
 func set_remote_transform(transform : Transform2D, screen_scale):
-	transform.origin *= Vector2(screen_scale / window.content_scale_size)
+	var scaling_factor =  Vector2(screen_scale) / Vector2(window.content_scale_size)
+	#var scaling_factor =  Vector2(3440, 1440) / Vector2(window.content_scale_size)
+	transform.origin *= scaling_factor
 	self.transform = transform
 	pass
 
