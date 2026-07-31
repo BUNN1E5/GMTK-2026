@@ -59,15 +59,17 @@ func _custom_spawn(data: Variant) -> Node:
 	
 	var player_instance = player_scene.instantiate() as Player
 	
-	# Set Node Name (Godot requires matching Node paths on all peers for network syncing!)
-	player_instance.name = str(peer_id)
-	
 	# Give ownership of this node to the client peer
 	player_instance.set_multiplayer_authority(peer_id)
 	
 	var player_data = PlayerData.from_dict(data_dict)
+	
+	# Set Node Name (Godot requires matching Node paths on all peers for network syncing!)
+	player_instance.name = player_data.uuid
+	
 	(func(player_data):
-		player_instance.apply_player_data(player_data)	
+		player_instance.initalize()
+		player_instance.apply_player_data(player_data)
 		pass
 	).call_deferred(player_data)
 	

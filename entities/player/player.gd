@@ -1,3 +1,4 @@
+@tool
 extends Node2D
 class_name Player
 
@@ -11,32 +12,14 @@ var player_data : PlayerData
 @onready var mouth: Sprite2D = $Mouth
 @onready var arm : AnimatedSprite2D = $Arm
 
+@export_tool_button("Randomize Costume") var randomize_costume = func():
+	player_data.costume_data.randomize_all_costumes()
+	update_costume(player_data.costume_data)
+
 var window : Window
 var collision_polygon : PackedVector2Array
 
-func _draw() -> void:
-	if collision_polygon.is_empty():
-		return
-		
-	# 1. Recreate the offset so we are drawing in local coordinate space
-	var offset := Vector2.ZERO
-	if body and body.texture and body.centered:
-		offset = -Vector2(body.texture.get_size()) / 2.0
-
-	# 2. Apply the offset to the base polygon
-	var local_poly := PackedVector2Array()
-	for point in collision_polygon:
-		local_poly.append(point + offset)
-
-	# 3. Close the loop (draw_polyline needs the first point at the end to close the shape)
-	local_poly.append(local_poly[0])
-
-	# 4. Draw a semi-transparent red fill and a solid red outline
-	draw_polygon(local_poly, PackedColorArray([Color(1, 0, 0, 0.4)]))
-	draw_polyline(local_poly, Color.RED, 2.0)
-
-func _ready() -> void:
-	#FIXME :: This will prob cause issues lol
+func initalize() -> void:
 	if window: # Window already exists, so lets close it first
 		window.queue_free()
 	#if multiplayer.get_unique_id() == get_multiplayer_authority():
@@ -45,7 +28,6 @@ func _ready() -> void:
 	window = Window.new()
 	window.position = get_window().position
 	window.mode = Window.MODE_MAXIMIZED
-	window.name = "Window  " + str(get_multiplayer_authority())
 	
 	
 	self.get_parent().add_child(window)
@@ -60,22 +42,9 @@ func _ready() -> void:
 	#window.mouse_passthrough = true
 	window.always_on_top = true
 	window.borderless = true
-	print(DisplayServer.get_name())
-	
 	window.add_child(self)
 	
 	self.position = Desktop.bl_screen_pos(window, get_size()/2 + Vector2(10 * (1 - get_multiplayer_authority()), 0))
-	
-	collision_polygon = get_collision_polygon()
-	update_mouse_passthru()
-	pass
-
-
-# for debugging purposes only
-func _input(event: InputEvent) -> void:
-	if(event.is_action_pressed("ui_accept")):
-		player_data.costume_data.randomize_all_costumes()
-		update_costume(player_data.costume_data)
 	pass
 
 func update_mouse_passthru():
@@ -112,8 +81,11 @@ func apply_player_data(player_data : PlayerData):
 		printerr("Player %s Does not have any costume data", player_data.name)
 		return
 
+	window.name = player_data.uuid
+
 	update_costume(player_data.costume_data)
 	update_class(player_data.class_data)
+	
 	
 	clothing.z_index = 10 * get_multiplayer_authority()
 	ears.z_index = 10 * get_multiplayer_authority()
@@ -121,6 +93,7 @@ func apply_player_data(player_data : PlayerData):
 	hair.z_index = 10 * get_multiplayer_authority()
 	mouth.z_index = 10 * get_multiplayer_authority()
 	arm.z_index = 10 * get_multiplayer_authority()
+	
 	
 
 func get_size():
