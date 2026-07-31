@@ -17,10 +17,18 @@ func _randomize_costume():
 	player_data.costume_data.randomize_all_costumes()
 	update_costume_dict.rpc(player_data.costume_data.to_dict())
 
+var last_transform = self.transform
 func _process(delta: float) -> void:
 	if randomize_costume:
 		_randomize_costume()
 		randomize_costume = false
+	if not last_transform == transform:
+		last_transform = transform
+		update_mouse_passthru()
+		if is_multiplayer_authority():
+			set_remote_transform.rpc(transform, window.content_scale_size)
+		pass
+	
 
 var window : Window
 var collision_polygon : PackedVector2Array
@@ -65,16 +73,10 @@ func initalize_window(uuid) -> void:
 	pass
 	set_notify_transform(true)
 	
-
-func _notification(what: int) -> void:
-	# Intercept the low-level engine notification
-	if what == NOTIFICATION_TRANSFORM_CHANGED:
-		update_mouse_passthru()
-		set_remote_transform.rpc(transform, window.content_scale_size)
-
 @rpc("authority", "call_local", "unreliable", 0)
 func set_remote_transform(transform : Transform2D, screen_scale):
 	var scaling_factor =  Vector2(screen_scale) / Vector2(window.content_scale_size)
+	print(scaling_factor)
 	#var scaling_factor =  Vector2(3440, 1440) / Vector2(window.content_scale_size)
 	transform.origin *= scaling_factor
 	self.transform = transform
