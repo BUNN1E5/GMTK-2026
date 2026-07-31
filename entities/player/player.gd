@@ -39,7 +39,10 @@ func _ready() -> void:
 	#FIXME :: This will prob cause issues lol
 	if window: # Window already exists, so lets close it first
 		window.queue_free()
-	window = Window.new()
+	if multiplayer.get_unique_id() == get_multiplayer_authority():
+		window = get_window()
+	else:	
+		window = Window.new()
 	window.position = get_window().position
 	window.mode = Window.MODE_MAXIMIZED
 	window.name = "Window  " + str(get_multiplayer_authority())
@@ -56,7 +59,8 @@ func _ready() -> void:
 	window.content_scale_size = DisplayServer.screen_get_size(DisplayServer.window_get_current_screen())/1.5
 	#window.mouse_passthrough = true
 	window.always_on_top = true
-	#window.borderless = true
+	window.borderless = true
+	print(DisplayServer.get_name())
 	
 	window.add_child(self)
 	
@@ -77,10 +81,6 @@ func _input(event: InputEvent) -> void:
 func update_mouse_passthru():
 	var translated_polygon = translate_polygon_to_window(collision_polygon)
 	window.mouse_passthrough_polygon = translated_polygon
-	print("collision_polygon")
-	print(collision_polygon)
-	print("translated_polygon")
-	print(translated_polygon)
 	queue_redraw()
 	pass
 

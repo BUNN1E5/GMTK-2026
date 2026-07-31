@@ -35,7 +35,6 @@ PlayerManager="*uid://c22mv4vtqxr56"
 [display]
 
 window/size/mode=2
-window/size/no_focus=true
 window/subwindows/embed_subwindows=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_height"
