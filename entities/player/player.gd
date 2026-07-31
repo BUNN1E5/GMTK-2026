@@ -228,7 +228,8 @@ func primary_action():
 	
 	player_data.total_clicks+=1
 	#print("%d | Total Clicks %d" % [multiplayer.get_unique_id(), player_data.total_clicks])
-	PlayerData.save(player_data, false)
+	if is_multiplayer_authority():
+		PlayerData.save(player_data, false)
 	if not player_data.class_data:
 		return
 	player_data.class_data.primary_action(self)
