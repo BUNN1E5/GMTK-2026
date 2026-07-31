@@ -74,7 +74,12 @@ static func load() -> PlayerData:
 	print("Loading Player Data")
 	if(ResourceLoader.exists("user://savedata.tres")):
 		print("Found Player Data")
-		return ResourceLoader.load("user://savedata.tres") as PlayerData
+		var costume_data = ResourceLoader.load("user://costumedata.tres") as CostumeData
+		var class_data = ResourceLoader.load("user://classdata.tres") as ClassData
+		var player_data = ResourceLoader.load("user://savedata.tres") as PlayerData
+		player_data.class_data = class_data
+		player_data.costume_data = costume_data
+		return player_data
 	
 	print("Found No Player Data, Creating a new one")
 	return PlayerData.new()
@@ -83,4 +88,7 @@ static func load() -> PlayerData:
 static func save(player_data : PlayerData, print : bool):
 	if(print):
 		print("Saving Player Data")
+		
 	ResourceSaver.save(player_data, "user://savedata.tres")
+	ResourceSaver.save(player_data.class_data, "user://classdata.tres")
+	ResourceSaver.save(player_data.costume_data, "user://costumedata.tres")

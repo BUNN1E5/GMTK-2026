@@ -12,9 +12,24 @@ var player_data : PlayerData
 
 func _ready() -> void:
 	pass
+
+# for debugging purposes only
+func _input(event: InputEvent) -> void:
+	if(event.is_action_pressed("ui_accept")):
+		player_data.costume_data.randomize_all_costumes()
+		update_costume(player_data.costume_data)
+	pass
+
+func update_costume(costume_data : CostumeData):
+	#body.texture = player_data.costume_data.get_costume_texture("body")
+	clothing.texture = costume_data.get_costume_texture("clothing")
+	ears.texture = costume_data.get_costume_texture("ears")
+	eyes.texture = costume_data.get_costume_texture("eyes")
+	hair.texture = costume_data.get_costume_texture("hair")
+	mouth.texture = costume_data.get_costume_texture("mouth")
 	
-func test(event):
-	print(event)
+	pass
+
 func apply_player_data(player_data : PlayerData):
 	self.player_data = player_data
 	if GlobalInput.global_input_event_ex.is_connected(global_input):
@@ -26,13 +41,7 @@ func apply_player_data(player_data : PlayerData):
 		printerr("Player %s Does not have any costume data", player_data.name)
 		return
 
-	
-	#body.texture = player_data.costume_data.get_costume_texture("body")
-	clothing.texture = player_data.costume_data.get_costume_texture("clothing")
-	ears.texture = player_data.costume_data.get_costume_texture("ears")
-	eyes.texture = player_data.costume_data.get_costume_texture("eyes")
-	hair.texture = player_data.costume_data.get_costume_texture("hair")
-	mouth.texture = player_data.costume_data.get_costume_texture("mouth")
+	update_costume(player_data.costume_data)
 	
 	clothing.z_index = get_multiplayer_authority()
 	ears.z_index = get_multiplayer_authority()
