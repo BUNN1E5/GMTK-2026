@@ -75,7 +75,7 @@ func _notification(what: int) -> void:
 
 @rpc("any_peer", "call_local", "unreliable", 0)
 func set_remote_transform(transform : Transform2D, screen_scale):
-	transform.origin *= (screen_scale / window.content_scale_size)
+	transform.origin *= Vector2(screen_scale / window.content_scale_size)
 	self.transform = transform
 	pass
 
