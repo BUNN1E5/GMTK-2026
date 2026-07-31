@@ -49,8 +49,7 @@ func _request_spawn(data_dict: Dictionary) -> void:
 		return 
 	
 	# Calling spawn() automatically syncs to all clients and calls `_custom_spawn` on everyone!
-	var player_node = spawn({"peer_id": peer_id, "data": data_dict}) as Player
-	players[peer_id] = player_node
+	spawn({"peer_id": peer_id, "data": data_dict}) as Player
 
 ## This runs automatically on SERVER and ALL CLIENTS when spawn() is called
 func _custom_spawn(data: Variant) -> Node:
@@ -73,6 +72,7 @@ func _custom_spawn(data: Variant) -> Node:
 		pass
 	).call_deferred(player_data)
 	
+	players[peer_id] = player_instance
 	# Track local player instance for quick access
 	if peer_id == multiplayer.get_unique_id():
 		local = player_instance

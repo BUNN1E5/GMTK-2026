@@ -7,21 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://boou67kmnky1e" path="res://entities/player/costumes/eyes/template_eyes.png" id="5_wvtmh"]
 [ext_resource type="Texture2D" uid="uid://cpj61468iucwm" path="res://entities/player/costumes/hair/template_hair.png" id="6_7thud"]
 [ext_resource type="Texture2D" uid="uid://r6k0j6nf5f0f" path="res://entities/player/costumes/mouth/template_mouth.png" id="7_a1qjk"]
-[ext_resource type="Texture2D" uid="uid://oujpil30wtp6" path="res://entities/player/classes/warrior/template_arm_up.png" id="8_26q78"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_dtc1f"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("8_26q78")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_26q78")
-}],
-"loop": 0,
-"name": &"default",
-"speed": 5.0
-}]
 
 [node name="Player" type="Node2D" unique_id=949443592]
 scale = Vector2(0.4, 0.4)
@@ -46,4 +31,3 @@ texture = ExtResource("6_7thud")
 texture = ExtResource("7_a1qjk")
 
 [node name="Arm" type="AnimatedSprite2D" parent="." unique_id=1188220596]
-sprite_frames = SubResource("SpriteFrames_dtc1f")

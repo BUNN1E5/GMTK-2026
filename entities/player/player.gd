@@ -44,9 +44,9 @@ func initalize() -> void:
 	window.borderless = true
 	window.add_child(self)
 	
-	self.position = Desktop.bl_screen_pos(window, get_size()/2 + Vector2(10 * (1 - get_multiplayer_authority()), 0))
+	self.position = Desktop.bl_screen_pos(window, get_size()/2 + Vector2(10 * (1 - get_multiplayer_authority() % 10), 0))
 	pass
-
+	
 func update_mouse_passthru():
 	var translated_polygon = translate_polygon_to_window(collision_polygon)
 	window.mouse_passthrough_polygon = translated_polygon
@@ -86,15 +86,15 @@ func apply_player_data(player_data : PlayerData):
 	update_costume(player_data.costume_data)
 	update_class(player_data.class_data)
 	
-	
-	clothing.z_index = 10 * get_multiplayer_authority()
-	ears.z_index = 10 * get_multiplayer_authority()
-	eyes.z_index = 10 * get_multiplayer_authority()
-	hair.z_index = 10 * get_multiplayer_authority()
-	mouth.z_index = 10 * get_multiplayer_authority()
-	arm.z_index = 10 * get_multiplayer_authority()
-	
-	
+	var z_index = 4096
+	if not multiplayer.get_unique_id() == get_multiplayer_authority():
+		z_index = randi_range(0, 4095)
+	clothing.z_index = z_index
+	ears.z_index = z_index
+	eyes.z_index = z_index
+	hair.z_index = z_index
+	mouth.z_index = z_index
+	arm.z_index = z_index
 
 func get_size():
 	return body.get_rect().size * transform.get_scale()
