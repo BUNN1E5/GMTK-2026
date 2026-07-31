@@ -51,8 +51,16 @@ func initalize() -> void:
 	window.add_child(self)
 	
 	self.position = Desktop.bl_screen_pos(window, get_size()/2 + Vector2(10 * (1 - get_multiplayer_authority() % 10), 0))
+	if OS.has_feature("windows"):
+		arm.frame_changed.connect(update_mouse_passthru)
 	pass
 	
+
+func _notification(what: int) -> void:
+	# Intercept the low-level engine notification
+	if what == NOTIFICATION_TRANSFORM_CHANGED:
+		update_mouse_passthru()
+
 func update_mouse_passthru():
 	var translated_polygon = translate_polygon_to_window(collision_polygon)
 	window.mouse_passthrough_polygon = translated_polygon
@@ -107,7 +115,7 @@ func get_size():
 
 func get_collision_polygon():
 	var active_textures: Array[Texture2D] = []
-	for sprite in [body, clothing, ears, hair]:
+	for sprite in [body, clothing, ears, hair, arm.frame]:
 		active_textures.append(sprite.texture)
 	#active_textures.append(body.texture)
 	#active_textures.append(hair.texture)
