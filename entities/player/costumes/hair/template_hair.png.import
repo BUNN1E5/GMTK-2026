@@ -17,7 +17,6 @@ dest_files=["res://.godot/imported/template_hair.png-b22a64e52f713f324a6094d8b3a
 
 compress/mode=0
 compress/high_quality=false
-compress/high_quality_mode=0
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0

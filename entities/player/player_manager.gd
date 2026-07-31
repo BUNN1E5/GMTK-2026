@@ -67,9 +67,7 @@ func _custom_spawn(data: Variant) -> Node:
 	
 	var player_data = PlayerData.from_dict(data_dict)
 	(func(player_data):
-		player_instance.apply_player_data(player_data)
-		player_instance.position = Desktop.bl_screen_pos(player_instance.get_size()/2 + Vector2(0, 0))
-		Desktop.update_player_clickables()
+		player_instance.apply_player_data(player_data)	
 		pass
 	).call_deferred(player_data)
 	

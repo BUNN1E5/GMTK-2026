@@ -1,0 +1,21 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://bm7dk634ffqvr"]
+
+[ext_resource type="Texture2D" uid="uid://oujpil30wtp6" path="res://entities/player/classes/warrior/template_arm_up.png" id="1_q62wc"]
+[ext_resource type="Texture2D" uid="uid://ga4ox7sk1nky" path="res://entities/player/classes/warrior/template_arm_down.png" id="2_adsjp"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_q62wc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_adsjp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_q62wc")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 20.0
+}]
