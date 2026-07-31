@@ -12,9 +12,15 @@ var player_data : PlayerData
 @onready var mouth: Sprite2D = $Mouth
 @onready var arm : AnimatedSprite2D = $Arm
 
-@export_tool_button("Randomize Costume") var randomize_costume = func():
+@export var randomize_costume = false
+func _randomize_costume():
 	player_data.costume_data.randomize_all_costumes()
 	update_costume(player_data.costume_data)
+
+func _process(delta: float) -> void:
+	if randomize_costume:
+		_randomize_costume()
+		randomize_costume = false
 
 var window : Window
 var collision_polygon : PackedVector2Array
