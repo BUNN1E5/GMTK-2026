@@ -2,6 +2,8 @@ extends Node
 
 @export var screen_size: Vector2i = DisplayServer.screen_get_size()
 
+static var taskbar_height = null
+
 func _init() -> void:
 	pass
 
