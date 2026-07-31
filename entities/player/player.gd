@@ -67,6 +67,7 @@ func update_mouse_passthru():
 	queue_redraw()
 	pass
 
+@rpc("any_peer", "call_local", "unreliable_ordered", 0)
 func update_costume(costume_data : CostumeData):
 	#body.texture = player_data.costume_data.get_costume_texture("body")
 	clothing.texture = costume_data.get_costume_texture("clothing")
