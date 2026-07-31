@@ -25,19 +25,18 @@ func _process(delta: float) -> void:
 var window : Window
 var collision_polygon : PackedVector2Array
 
-func initalize() -> void:
+func initalize(parent) -> void:
 	if window: # Window already exists, so lets close it first
 		window.queue_free()
 	#if multiplayer.get_unique_id() == get_multiplayer_authority():
 	#	window = get_window()
 	#else:	
 	window = Window.new()
-	window.position = get_window().position
+	if(get_window()):
+		window.position = get_window().position
 	window.mode = Window.MODE_MAXIMIZED
 	
-	
-	self.get_parent().add_child(window)
-	self.get_parent().remove_child(self)
+	parent.add_child(window)
 
 	
 	window.transparent = true
@@ -54,12 +53,19 @@ func initalize() -> void:
 	if OS.has_feature("windows"):
 		arm.frame_changed.connect(update_mouse_passthru)
 	pass
+	set_notify_transform(true)
 	
 
 func _notification(what: int) -> void:
 	# Intercept the low-level engine notification
 	if what == NOTIFICATION_TRANSFORM_CHANGED:
 		update_mouse_passthru()
+		set_remote_position(position)
+
+@rpc("any_peer", "call_remote", "unreliable", 0)
+func set_remote_position(position):
+	self.position = position
+	pass
 
 func update_mouse_passthru():
 	var translated_polygon = translate_polygon_to_window(collision_polygon)
@@ -67,7 +73,7 @@ func update_mouse_passthru():
 	queue_redraw()
 	pass
 
-@rpc("any_peer", "call_local", "unreliable_ordered", 0)
+@rpc("authority", "call_remote", "reliable", 0)
 func update_costume(costume_data : CostumeData):
 	#body.texture = player_data.costume_data.get_costume_texture("body")
 	clothing.texture = costume_data.get_costume_texture("clothing")
@@ -199,7 +205,7 @@ func primary_action():
 		return
 	
 	player_data.total_clicks+=1
-	print("%d | Total Clicks %d" % [multiplayer.get_unique_id(), player_data.total_clicks])
+	#print("%d | Total Clicks %d" % [multiplayer.get_unique_id(), player_data.total_clicks])
 	PlayerData.save(player_data, false)
 	if not player_data.class_data:
 		return

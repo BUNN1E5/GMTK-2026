@@ -66,11 +66,8 @@ func _custom_spawn(data: Variant) -> Node:
 	# Set Node Name (Godot requires matching Node paths on all peers for network syncing!)
 	player_instance.name = player_data.uuid
 	
-	(func(player_data):
-		player_instance.initalize()
-		player_instance.apply_player_data(player_data)
-		pass
-	).call_deferred(player_data)
+	player_instance.initalize(self)
+	player_instance.apply_player_data(player_data)
 	
 	players[peer_id] = player_instance
 	# Track local player instance for quick access
