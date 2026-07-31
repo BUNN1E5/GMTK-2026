@@ -49,6 +49,8 @@ func initalize() -> void:
 	arm = $Arm
 	pass
 
+
+
 func initalize_window(uuid) -> void:
 	if window: # Window already exists, so lets close it first
 		window.queue_free()
@@ -91,10 +93,11 @@ func initalize_window(uuid) -> void:
 	if Desktop.taskbar_height == null:
 		window.size_changed.connect(two_shot, CONNECT_ONE_SHOT)
 		
-	if OS.has_feature("windows"):
-		arm.frame_changed.connect(update_mouse_passthru)
-	pass
-	set_notify_transform(true)
+	#if OS.has_feature("windows"):
+	arm.frame_changed.connect(func():
+		collision_polygon = get_collision_polygon()
+		update_mouse_passthru()
+		)
 	
 @rpc("any_peer", "call_local", "unreliable", 0)
 func set_remote_transform(transform : Transform2D, screen_scale):

@@ -13,21 +13,28 @@ scale = Vector2(0.4, 0.4)
 script = ExtResource("1_symyc")
 
 [node name="Body" type="Sprite2D" parent="." unique_id=863917641]
+visible = false
 texture = ExtResource("2_qiwj3")
 
 [node name="Clothing" type="Sprite2D" parent="." unique_id=75216385]
+visible = false
 texture = ExtResource("3_26q78")
 
 [node name="Ears" type="Sprite2D" parent="." unique_id=97602668]
+visible = false
 texture = ExtResource("4_bectd")
 
 [node name="Eyes" type="Sprite2D" parent="." unique_id=1884554280]
+visible = false
 texture = ExtResource("5_wvtmh")
 
 [node name="Hair" type="Sprite2D" parent="." unique_id=1704938185]
+visible = false
 texture = ExtResource("6_7thud")
 
 [node name="Mouth" type="Sprite2D" parent="." unique_id=2097028859]
+visible = false
 texture = ExtResource("7_a1qjk")
 
 [node name="Arm" type="AnimatedSprite2D" parent="." unique_id=1188220596]
+visible = false
