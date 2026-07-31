@@ -6,9 +6,9 @@ func _init() -> void:
 	pass
 
 func _ready() -> void:
-	get_window().mouse_passthrough = true
-	get_tree().set_auto_accept_quit(false)
-	get_window().hide()
+	#get_window().mouse_passthrough = true
+	#get_tree().set_auto_accept_quit(false)
+	#get_window().hide()
 	pass
 
 func bl_screen_pos(window : Window, pos : Vector2):

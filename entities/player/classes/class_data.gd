@@ -5,7 +5,7 @@ class_name ClassData
 const MOVES_PATH := "res://entities/player/moves/"
 
 #Class accessories
-var move_id : String
+@export var move_id : String
 var move : Script
 
 func primary_action(player : Player):
