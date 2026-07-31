@@ -15,7 +15,7 @@ var player_data : PlayerData
 @export var randomize_costume = false
 func _randomize_costume():
 	player_data.costume_data.randomize_all_costumes()
-	update_costume.rpc(player_data.costume_data.to_dict())
+	update_costume_dict.rpc(player_data.costume_data.to_dict())
 
 func _process(delta: float) -> void:
 	if randomize_costume:
@@ -25,7 +25,20 @@ func _process(delta: float) -> void:
 var window : Window
 var collision_polygon : PackedVector2Array
 
-func initalize(parent) -> void:
+func _ready() -> void:
+	self.position = Desktop.bl_screen_pos(window, get_size()/2 + Vector2(10 * (1 - get_multiplayer_authority() % 10), 0))
+
+func initalize() -> void:
+	body = $Body
+	clothing = $Clothing
+	ears = $Ears
+	eyes = $Eyes
+	hair = $Hair
+	mouth = $Mouth
+	arm = $Arm
+	pass
+
+func initalize_window(uuid) -> void:
 	if window: # Window already exists, so lets close it first
 		window.queue_free()
 	#if multiplayer.get_unique_id() == get_multiplayer_authority():
@@ -36,9 +49,6 @@ func initalize(parent) -> void:
 		window.position = get_window().position
 	window.mode = Window.MODE_MAXIMIZED
 	
-	parent.add_child(window)
-
-	
 	window.transparent = true
 	#window.content_scale_stretch = Window.CONTENT_SCALE_STRETCH_FRACTIONAL
 	window.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_KEEP_HEIGHT
@@ -47,9 +57,9 @@ func initalize(parent) -> void:
 	#window.mouse_passthrough = true
 	window.always_on_top = true
 	window.borderless = true
+	window.name = "Window " + uuid
 	window.add_child(self)
 	
-	self.position = Desktop.bl_screen_pos(window, get_size()/2 + Vector2(10 * (1 - get_multiplayer_authority() % 10), 0))
 	if OS.has_feature("windows"):
 		arm.frame_changed.connect(update_mouse_passthru)
 	pass
@@ -73,19 +83,25 @@ func update_mouse_passthru():
 	queue_redraw()
 	pass
 
-@rpc("authority", "call_local", "reliable", 0)
-func update_costume(costume_data : Dictionary):
-	var _costume_data = CostumeData.from_dict(costume_data)
+
+func update_costume(costume_data : CostumeData):
+	print("Updating Costume")
 	#body.texture = player_data.costume_data.get_costume_texture("body")
-	clothing.texture = _costume_data.get_costume_texture("clothing")
-	ears.texture = _costume_data.get_costume_texture("ears")
-	eyes.texture = _costume_data.get_costume_texture("eyes")
-	hair.texture = _costume_data.get_costume_texture("hair")
-	mouth.texture = _costume_data.get_costume_texture("mouth")
+	clothing.texture = costume_data.get_costume_texture("clothing")
+	ears.texture = costume_data.get_costume_texture("ears")
+	eyes.texture = costume_data.get_costume_texture("eyes")
+	hair.texture = costume_data.get_costume_texture("hair")
+	mouth.texture = costume_data.get_costume_texture("mouth")
 	
 	collision_polygon = get_collision_polygon()
 	update_mouse_passthru()
 	pass
+
+@rpc("authority", "call_local", "reliable", 0)
+func update_costume_dict(costume_data : Dictionary):
+	var _costume_data = CostumeData.from_dict(costume_data)
+	update_costume(_costume_data)
+
 
 func update_class(class_data : ClassData):
 	arm.sprite_frames = class_data.get_move()
@@ -102,13 +118,14 @@ func apply_player_data(player_data : PlayerData):
 		printerr("Player %s Does not have any costume data", player_data.name)
 		return
 
-	window.name = player_data.uuid
+	if window:
+		window.name = "Window " + player_data.uuid
 
-	update_costume.rpc(player_data.costume_data.to_dict())
+	update_costume(player_data.costume_data)
 	update_class(player_data.class_data)
 	
 	var z_index = 4096
-	if not multiplayer.get_unique_id() == get_multiplayer_authority():
+	if not is_multiplayer_authority():
 		z_index = randi_range(0, 4095)
 	clothing.z_index = z_index
 	ears.z_index = z_index

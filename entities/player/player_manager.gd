@@ -34,7 +34,7 @@ func _send_local_player_spawn_request() -> void:
 
 func _on_connect_to_server() -> void:
 	# Client calls this after establishing a connection
-	rpc_id(1, "_resync_existing_players")
+	#rpc_id(1, "_resync_existing_players")
 	_send_local_player_spawn_request()
 
 @rpc("any_peer", "call_local", "reliable")
@@ -65,7 +65,7 @@ func _request_spawn(data_dict: Dictionary) -> void:
 		return 
 	
 	# Calling spawn() automatically syncs to all clients and calls `_custom_spawn` on everyone!
-	spawn({"peer_id": peer_id, "data": data_dict}) as Player
+	var p = spawn({"peer_id": peer_id, "data": data_dict})
 
 ## This runs automatically on SERVER and ALL CLIENTS when spawn() is called
 func _custom_spawn(data: Variant) -> Node:
@@ -82,15 +82,20 @@ func _custom_spawn(data: Variant) -> Node:
 	# Set Node Name (Godot requires matching Node paths on all peers for network syncing!)
 	player_instance.name = player_data.uuid
 	
-	player_instance.initalize(self)
-	player_instance.apply_player_data(player_data)
+	player_instance.initalize()
+	player_instance.initalize_window(player_data.uuid)
+	
+	player_instance.ready.connect(func():
+		player_instance.apply_player_data(player_data)
+		)
+	
 	
 	players[peer_id] = player_instance
 	# Track local player instance for quick access
 	if peer_id == multiplayer.get_unique_id():
 		local = player_instance
 	
-	return player_instance
+	return player_instance.window
 
 func _on_peer_disconnected(peer_id: int) -> void:
 	if multiplayer.is_server() and players.has(peer_id):
