@@ -15,7 +15,7 @@ var player_data : PlayerData
 @export var randomize_costume = false
 func _randomize_costume():
 	player_data.costume_data.randomize_all_costumes()
-	update_costume.rpc(player_data.costume_data)
+	update_costume.rpc(player_data.costume_data.to_dict())
 
 func _process(delta: float) -> void:
 	if randomize_costume:
@@ -60,11 +60,11 @@ func _notification(what: int) -> void:
 	# Intercept the low-level engine notification
 	if what == NOTIFICATION_TRANSFORM_CHANGED:
 		update_mouse_passthru()
-		set_remote_position.rpc(position)
+		set_remote_transform.rpc(transform)
 
 @rpc("any_peer", "call_local", "unreliable", 0)
-func set_remote_position(position):
-	self.position = position
+func set_remote_transform(transform):
+	self.transform = transform
 	pass
 
 func update_mouse_passthru():
@@ -74,13 +74,14 @@ func update_mouse_passthru():
 	pass
 
 @rpc("authority", "call_local", "reliable", 0)
-func update_costume(costume_data : CostumeData):
+func update_costume(costume_data : Dictionary):
+	var _costume_data = CostumeData.from_dict(costume_data)
 	#body.texture = player_data.costume_data.get_costume_texture("body")
-	clothing.texture = costume_data.get_costume_texture("clothing")
-	ears.texture = costume_data.get_costume_texture("ears")
-	eyes.texture = costume_data.get_costume_texture("eyes")
-	hair.texture = costume_data.get_costume_texture("hair")
-	mouth.texture = costume_data.get_costume_texture("mouth")
+	clothing.texture = _costume_data.get_costume_texture("clothing")
+	ears.texture = _costume_data.get_costume_texture("ears")
+	eyes.texture = _costume_data.get_costume_texture("eyes")
+	hair.texture = _costume_data.get_costume_texture("hair")
+	mouth.texture = _costume_data.get_costume_texture("mouth")
 	
 	collision_polygon = get_collision_polygon()
 	update_mouse_passthru()
@@ -103,7 +104,7 @@ func apply_player_data(player_data : PlayerData):
 
 	window.name = player_data.uuid
 
-	update_costume(player_data.costume_data)
+	update_costume.rpc(player_data.costume_data.to_dict())
 	update_class(player_data.class_data)
 	
 	var z_index = 4096

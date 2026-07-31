@@ -46,6 +46,8 @@ func _resync_existing_players() -> void:
 	
 	# Send all existing players to the new client
 	for existing_peer_id in players.keys():
+		if(existing_peer_id == peer_id):
+			continue
 		var player_data = players[existing_peer_id].player_data
 		var data_dict = player_data.to_dict()
 		rpc_id(peer_id, "_request_spawn", {"peer_id": existing_peer_id, "data": data_dict})
