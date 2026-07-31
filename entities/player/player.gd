@@ -39,10 +39,10 @@ func _ready() -> void:
 	#FIXME :: This will prob cause issues lol
 	if window: # Window already exists, so lets close it first
 		window.queue_free()
-	if multiplayer.get_unique_id() == get_multiplayer_authority():
-		window = get_window()
-	else:	
-		window = Window.new()
+	#if multiplayer.get_unique_id() == get_multiplayer_authority():
+	#	window = get_window()
+	#else:	
+	window = Window.new()
 	window.position = get_window().position
 	window.mode = Window.MODE_MAXIMIZED
 	window.name = "Window  " + str(get_multiplayer_authority())
