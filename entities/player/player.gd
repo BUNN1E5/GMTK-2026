@@ -116,7 +116,10 @@ func get_size():
 
 func get_collision_polygon():
 	var active_textures: Array[Texture2D] = []
-	for sprite in [body, clothing, ears, hair, arm.frame]:
+	if arm.sprite_frames:
+		var anim_tex = arm.sprite_frames.get_frame_texture(arm.animation, arm.frame)
+		active_textures.append(anim_tex)
+	for sprite in [body, clothing, ears, hair]:
 		active_textures.append(sprite.texture)
 	#active_textures.append(body.texture)
 	#active_textures.append(hair.texture)
