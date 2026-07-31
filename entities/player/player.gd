@@ -34,7 +34,10 @@ var window : Window
 var collision_polygon : PackedVector2Array
 
 func _ready() -> void:
-	self.position = Desktop.bl_screen_pos(window, get_size()/2 + Vector2(10 * (1 - get_multiplayer_authority() % 10), 0))
+	var tbh = 0
+	if Desktop.taskbar_height:
+		tbh = Desktop.taskbar_height
+	self.position = Desktop.bl_screen_pos(window, get_size()/2 + Vector2(10 * (1 - get_multiplayer_authority() % 10), tbh))
 
 func initalize() -> void:
 	body = $Body
@@ -55,28 +58,47 @@ func initalize_window(uuid) -> void:
 	window = Window.new()
 	if(get_window()):
 		window.position = get_window().position
-	window.mode = Window.MODE_MAXIMIZED
 	
+	if Desktop.taskbar_height:
+		window.mode = Window.MODE_FULLSCREEN
+		window.unfocusable = true
+	else:
+		window.mode = Window.MODE_MAXIMIZED
 	window.transparent = true
 	#window.content_scale_stretch = Window.CONTENT_SCALE_STRETCH_FRACTIONAL
 	window.content_scale_aspect = Window.CONTENT_SCALE_ASPECT_KEEP_HEIGHT
 	window.content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
-	window.content_scale_size = DisplayServer.screen_get_size(DisplayServer.window_get_current_screen())/1.5
+	window.content_scale_size = DisplayServer.screen_get_size(DisplayServer.window_get_current_screen())
 	#window.mouse_passthrough = true
 	window.always_on_top = true
 	window.borderless = true
 	window.name = "Window " + uuid
+	
 	window.add_child(self)
 	
+	var get_taskbar_size = func():
+		Desktop.taskbar_height = (DisplayServer.screen_get_size(DisplayServer.window_get_current_screen()) - window.size).y
+		#Desktop.taskbar_height -= 14 # HOTFIX cause its slightly wrong for some reason
+		window.mode = Window.MODE_FULLSCREEN
+		#self.initalize_window(uuid)
+		#window.set_flag(Window.FLAG_NO_FOCUS, true)
+		_ready()
+		pass
+		
+	var two_shot = func():
+		window.size_changed.connect(get_taskbar_size, CONNECT_ONE_SHOT)
+		pass
+	if Desktop.taskbar_height == null:
+		window.size_changed.connect(two_shot, CONNECT_ONE_SHOT)
+		
 	if OS.has_feature("windows"):
 		arm.frame_changed.connect(update_mouse_passthru)
 	pass
 	set_notify_transform(true)
 	
-@rpc("authority", "call_local", "unreliable", 0)
+@rpc("any_peer", "call_local", "unreliable", 0)
 func set_remote_transform(transform : Transform2D, screen_scale):
-	var scaling_factor =  Vector2(screen_scale) / Vector2(window.content_scale_size)
-	print(scaling_factor)
+	var scaling_factor = Vector2(window.content_scale_size) / Vector2(screen_scale)
 	#var scaling_factor =  Vector2(3440, 1440) / Vector2(window.content_scale_size)
 	transform.origin *= scaling_factor
 	self.transform = transform
